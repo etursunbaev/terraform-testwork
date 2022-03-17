@@ -6,4 +6,10 @@ provider "aws" {
 
 module "my_ssh_key" {
     source = "./modules/my_ssh_key"
+
+}
+
+module "my_sg" {
+    source = "./modules/my_sg"
+    my_ip = var.my_ip
 }
