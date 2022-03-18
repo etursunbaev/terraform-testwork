@@ -11,7 +11,7 @@ resource "aws_security_group" "allow_ssh" {
         cidr_blocks      = [var.my_ip]
     }
 }
-resource "aws_security_group" "allow_http" {
+resource "aws_security_group" "allow_web" {
     name = "Allow HTTP"
     description = "Allow inbound HTTP access from my home IP address"
 
@@ -21,5 +21,17 @@ resource "aws_security_group" "allow_http" {
         to_port          = 80
         protocol         = "tcp"
         cidr_blocks      = [var.my_ip]
+    }
+}
+resource "aws_security_group" "allow_out_all" {
+    name = "Allow all Out"
+    description = "Allow outbound HTTP access from my instance"
+
+    egress {
+      from_port   = 0
+      to_port     = 65535
+      protocol    = "all"
+      description = "Open internet"
+      cidr_blocks = ["0.0.0.0/0"]
     }
 }
