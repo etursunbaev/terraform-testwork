@@ -22,3 +22,15 @@ variable "instance_name" {
     default = "MyTestInstance"
     type = string
 }
+variable "OS_Type" {
+    type = string
+    default = ""
+}
+variable "FirstName" {
+    type = string
+    default = "Eldar"
+}
+variable "LastName" {
+    type = string
+    default = "Tursunbaev"
+}
