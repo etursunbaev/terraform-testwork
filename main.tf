@@ -15,3 +15,6 @@ module "my_ec2" {
     key_name = module.my_ssh_key.key_name
     vpc_security_group_ids = [module.my_sg.ssh_sg_id,module.my_sg.web_sg_id,module.my_sg.out_sg_id]    
 }
+output "PublicIP" {
+  value = module.my_ec2.Instance_Public_IP
+}
