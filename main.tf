@@ -18,3 +18,6 @@ module "my_ec2" {
 output "PublicIP" {
   value = module.my_ec2.Instance_Public_IP
 }
+output "ami_id" {
+  value = module.my_ec2.AMIID
+}

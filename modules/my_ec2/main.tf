@@ -1,15 +1,16 @@
 data "aws_caller_identity" "current" {}
 data "aws_ami" "os_platform" {
-  owners           = ["amazon"]
+  owners = ["amazon"]
+  most_recent = true
 
   filter {
-    name   = "image-id"
-    values = [var.ami_id]
+    name = "name"
+    values = ["amzn2-ami-kernel-5.10-hvm*-x86_64-gp2"]
   }
 }
 
 resource "aws_instance" "my_Instance" {
-    ami = var.ami_id
+    ami = data.aws_ami.os_platform.image_id
     instance_type = var.instance_type
     key_name = var.key_name
     availability_zone = var.availability_zone

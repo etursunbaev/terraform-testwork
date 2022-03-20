@@ -1,7 +1,3 @@
-variable "ami_id" {
-    type = string
-    default = "ami-033b95fb8079dc481"
-}
 variable "instance_type" {
     type = string
     default = "t2.micro"
@@ -21,10 +17,6 @@ variable "instance_name" {
     description = "My Instance name"
     default = "MyTestInstance"
     type = string
-}
-variable "OS_Type" {
-    type = string
-    default = ""
 }
 variable "FirstName" {
     type = string
