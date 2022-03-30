@@ -1,4 +1,7 @@
 #variable "my_ip" {}
+data "http" "my_ip" {
+  url = "http://ifconfig.io/ip"
+}
 resource "aws_security_group" "allow_ssh" {
     name = "Allow SSH"
     description = "Allow inbound SSH from my home IP address"
@@ -8,7 +11,7 @@ resource "aws_security_group" "allow_ssh" {
         from_port        = 22
         to_port          = 22
         protocol         = "tcp"
-        cidr_blocks      = [var.my_ip]
+        cidr_blocks      = ["${chomp(data.http.my_ip.body)}/32"]
     }
 }
 resource "aws_security_group" "allow_web" {
@@ -20,7 +23,7 @@ resource "aws_security_group" "allow_web" {
         from_port        = 80
         to_port          = 80
         protocol         = "tcp"
-        cidr_blocks      = [var.my_ip]
+        cidr_blocks      = ["${chomp(data.http.my_ip.body)}/32"]
     }
 }
 resource "aws_security_group" "allow_out_all" {
