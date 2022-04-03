@@ -1,4 +1,3 @@
-#variable "my_ip" {}
 data "http" "my_ip" {
   url = "http://ifconfig.io/ip"
 }
