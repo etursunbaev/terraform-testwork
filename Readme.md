@@ -8,7 +8,7 @@ This Terraform module creates AWS EC2 instance and with user-data provisions
 User-data installs apache2 web server, provisions simple html page with tags information retrieved from instance meta-data
 
 ## Variables
-Variables are configures in `variables.tf` file with default or empty values. You should use own values in `terraform.tfvars` file
+Variables are configured in `variables.tf` file with default or empty values. You should use own values in `terraform.tfvars` file
 ```
 your_first_name = "First Name"
 your_last_name = "Last Name"
