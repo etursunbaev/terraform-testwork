@@ -44,7 +44,7 @@ variable "instance_user" {
 variable "os_platform_name" {
     description = "The EC2 AMI owner to be used in data filter search."
     type = string
-    default = ""
+    default = "amzn2-ami-kernel-5.10-hvm*-x86_64-gp2"
 }
 variable "os_platform_owner" {
     description = "The EC2 AMI name to be used in data filter search."
@@ -69,7 +69,7 @@ variable "environment" {
 variable "departament_name" {
     description = "The departament name."
     type = string
-    default = "EPAM"
+    default = "IT"
 }
 variable "vpc_id" {
     description = "The VPC id to be used in environment."
