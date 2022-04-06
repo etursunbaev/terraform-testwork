@@ -34,7 +34,3 @@ Variables are configured in `variables.tf` file with default or empty values. Yo
 | aws_region | string | The AWS region to be used in. | us-east-1 |
 | your_aws_access_key_id | string | Your AWS_ACCESS_KEY_ID to be used by terraform. | - |
 | your_aws_secret_access_key | string | Your AWS_SECRET_ACCESS_KEY to be used by terraform. | - |
-
-## Backend
-Backend for tfstate file is configured to use s3 bucket. Please, change to your own s3 bucket name if it is not shared infrastructure.
-
