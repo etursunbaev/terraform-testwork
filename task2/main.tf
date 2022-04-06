@@ -5,9 +5,10 @@ provider "aws" {
 }
 
 module "my_ec2" {
-    source                 = "../task1"
+    source = "../task1"
+    your_first_name = var.your_first_name
     your_last_name = var.your_last_name
-    environment = var.your_last_name
+    environment = var.environment
     items_count = var.items_count
     my_pub_key = var.my_pub_key
     instance_type = var.instance_type
