@@ -11,9 +11,4 @@ terraform {
       version = ">= 1.3"
     }
   }
-  backend "s3" {
-    bucket = "wkl-eldar-lab-works"
-    key    = "terraform.ftstate"
-    region = "us-east-1"
-  }
 }
