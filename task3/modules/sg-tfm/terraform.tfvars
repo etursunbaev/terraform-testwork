@@ -1,25 +1,26 @@
-your_first_name   = "Eldar"
-your_last_name    = "Tursunbaev"
-environment       = "test"
-data_http_ip_url = "http://ifconfig.io/ip"
-vpc_id = "vpc-02532678f469d05ca"
+additional_tags = {
+  "departament_name" = "IT"
+}
+create_sg = true
+sg_count = 1
 prefix_name = "my"
-departament_name = "IAD"
+environment = "test"
+default_vpc_id = "vpc-02532678f469d05ca"
 ingress_rules = [ {
-    "description" = "test-rule"
+    "description" = "SSH Access from"
     "from_port" = "22"
     "to_port" = "22"
     "protocol" = "ssh"
-    "cidr_blocks" = "0.0.0.0/0"
+    "cidr_blocks" = "212.241.20.0/24"
 },
 {
-    "description" = "test-rule2"
+    "description" = "HTTP access"
     "from_port" = "80"
     "to_port" = "80"
     "protocol" = "http"
-    "cidr_blocks" = "0.0.0.0/0"
+    "cidr_blocks" = "212.241.20.0/24"
 } ]
-egress_rules_default = [
+egress_rules = [
     {
         "cidr_blocks" = "0.0.0.0/0"
         "description" = "Open ALL egress"
@@ -28,17 +29,3 @@ egress_rules_default = [
         "protocol" = "all"
     }
 ]
-ingress_rules_default = [ {
-    "cidr_blocks" = "172.31.2.0/24"
-    "description" = "test-rule-default"
-    "from_port" = "3306"
-    "to_port" = "3306"
-    "protocol" = "tcp"
-},
-{
-    "cidr_blocks" = "172.31.1.0/24"
-    "description" = "test-rule-default-2"
-    "from_port" = "5132"
-    "to_port" = "5132"
-    "protocol" = "tcp"
-} ]
