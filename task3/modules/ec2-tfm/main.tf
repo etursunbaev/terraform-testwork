@@ -1,89 +1,51 @@
-provider "aws" {
-    access_key = var.your_aws_access_key_id
-    secret_key = var.your_aws_secret_access_key
-    region = var.aws_region
-}
 locals {
-    username = lookup(var.instance_user, var.os_platform_owner)
-    common_tags = {
-        Department = var.departament_name
-        ManagedByTerraform = "True"
-        Environment = var.environment
-    }
+    additional_tags = length(var.additional_tags) > 0 ? var.additional_tags : "no_additional_tags"
 }
-
 data "aws_caller_identity" "current" {}
-data "aws_ami" "os_platform" {
-    owners = [var.os_platform_owner]
-    most_recent = true
+data "template_file" "user_data_template" {
+    template = file("${path.module}/${var.user_data_template_file}")
+}
+# Resources
 
-    filter {
-        name = "name"
-        values = [var.os_platform_name]
-    }
+##########################################################################################
+# THIS tls_private_key resource module IS NOT RECOMMENDED FOR PRODUCTION SERVICES.                   #
+# Read more about here https://registry.terraform.io/providers/hashicorp/tls/latest/docs #
+##########################################################################################
+resource "tls_private_key" "rsa_gen_key" {
+    algorithm = var.tls_algorithm
+    rsa_bits  = var.tls_rsa_bits
 }
-data "aws_security_groups" "sg_id" {
-    filter {
-        name   = "vpc-id"
-        values = [var.vpc_id]
-    }  
+
+resource "aws_key_pair" "rsa_pub_key" {
+    key_name   = var.pub_key_name
+    public_key = tls_private_key.rsa_gen_key.public_key_openssh
+    tags = merge(local.additional_tags,{
+        Name = "${var.prefix_name}-${var.environment}-key"
+        },
+    )
 }
-data "aws_vpc" "my_vpc" {
-    id = var.vpc_id
+resource "local_file" "save_priv_key_pem" { 
+    filename = "${path.module}/cloudtls.pem"
+    content = tls_private_key.rsa_gen_key.private_key_pem
 }
-data "aws_subnet" "my_subnet" {
-    filter {
-        name   = "vpc-id"
-        values = [var.vpc_id]
-    }
-    filter {
-        name = "availability-zone"
-        values = [var.vpc_az]
-    }
-}
-############################ Resources
-resource "aws_instance" "server" {
-    count = var.create && var.pub_key_name != "" ? var.instance_count : 0
-    ami = data.aws_ami.os_platform.image_id
+resource "aws_instance" "basic_instance" {
+    count = var.instance_count > 0 ? var.instance_count : 0
+    ami = var.ami_id
     instance_type = var.instance_type
     key_name = var.pub_key_name
     vpc_security_group_ids = var.vpc_security_group_ids
-    subnet_id = tostring(data.aws_subnet.my_subnet.id)
+    subnet_id = var.subnet_id
     metadata_options {
         instance_metadata_tags = "enabled"
         http_endpoint = "enabled"
     }
-    tags = merge(local.common_tags,{
+    tags = merge(local.additional_tags,{
         Name = format("${var.prefix_name}-${var.environment}-${var.instance_name}-%03d", count.index + 1)
         Date_creation = formatdate("DD MMM YYYY hh:mm ZZZ", timestamp())
-        OS_type = data.aws_ami.os_platform.platform_details
         Your_First_Name = var.your_first_name
         Your_Last_Name = var.your_last_name
         AWS_Account_ID = data.aws_caller_identity.current.account_id
-        },
+        }
     )
-  
-    user_data = file("${path.module}/init.tftpl")
-    provisioner "file" {
-        content = "SUCCESS"
-        destination = "/tmp/success.txt"
-        connection {
-            type = "ssh"
-            user =local.username
-            private_key = var.path_priv_key
-            host = self.public_ip
-        }
-    }
-
-    provisioner "remote-exec" {
-        inline = [
-            "cat /tmp/success.txt"
-        ]
-        connection {
-            type = "ssh"
-            user = local.username
-            private_key = var.path_priv_key
-            host = self.public_ip
-        }
-    }
+    user_data = data.template_file.user_data_template.rendered
 }

@@ -6,5 +6,5 @@ yum update -y
 yum install -y httpd.x86_64
 systemctl start httpd.service
 systemctl enable httpd.service
-
-touch /tmp/success.txt
+echo "SUCCESS" > /tmp/success.txt
+touch /var/tmp/finished-user-data
