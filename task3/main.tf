@@ -3,44 +3,61 @@ provider "aws" {
     secret_key = var.your_aws_secret_access_key
     region = var.aws_region
 }
-module "md-key" {
-    source = "./modules/key-tfm"
-    departament_name = var.departament_name
-    environment = var.environment
-    prefix_name = var.prefix_name
+data "aws_vpc" "vpc" {
+    id = var.vpc_id
+}
+data "aws_subnet" "subnet" {
+    filter {
+        name   = "vpc-id"
+        values = [var.vpc_id]
+    }
+    filter {
+        name = "availability-zone"
+        values = [var.vpc_az]
+    }
 }
 module "md-sg" {
     source = "./modules/sg-tfm"
-    departament_name = var.departament_name
     environment = var.environment
-    create = var.create
     create_sg = var.create_sg
-    security_group_id = var.security_group_id
-    vpc_id = var.vpc_id
-    data_http_ip_url = var.data_http_ip_url
+    vpc_id = data.aws_vpc.vpc.id
     prefix_name = var.prefix_name
-    sg_description = var.sg_description
-    revoke_rules_on_delete = var.revoke_rules_on_delete
-    ingress_rules = var.ingress_rules
-    egress_rules_default = var.egress_rules_default
+    # ingress_rules = var.ingress_rules
+    # egress_rules = var.egress_rules
 }
 module "md-ec2" {
     source = "./modules/ec2-tfm"
-    create = var.create
-    pub_key_name = module.md-key.pub_key_name
-    instance_type = var.instance_type
-    vpc_az = var.vpc_az
-    instance_name = var.instance_name
-    vpc_security_group_ids = module.md-sg.sg_id
-    your_first_name = var.your_first_name
-    your_last_name = var.your_last_name
+    #pub_key_name = var.pub_key_name
     instance_count = var.instance_count
-    os_platform_name  = var.os_platform_name
-    os_platform_owner = var.os_platform_owner
-    path_priv_key = module.md-key.priv-key-pem
-    environment = var.environment
-    departament_name = var.departament_name
-    vpc_id = var.vpc_id
+    subnet_id = data.aws_subnet.subnet.id
+    vpc_security_group_ids = module.md-sg.sg_id
+    tls_algorithm = "RSA"
     prefix_name = var.prefix_name
-    aws_region = var.aws_region
 }
+data "template_file" "check_user-data" {
+    template = "${file("${path.module}/${var.check_user_data_template_file}")}"
+}
+data "template_file" "print_cmd" {
+    template = "${file("${path.module}/print.sh")}"
+}
+# resource "local_file" "save_priv_key_pem" { 
+#     filename = "${path.module}/cloudtls.pem"
+#     content = module.md-ec2.priv-key-pem 
+#     #tls_private_key.rsa_gen_key.private_key_pem
+# }
+# resource "null_resource" "remote_print" {
+#     count = var.create ? var.instance_count : 0
+#     connection {
+#         type = "ssh"
+#         user = var.instance_user
+#         private_key = module.md-ec2.priv-key-pem
+#         host = module.md-ec2.instance_public_ip[count.index]
+#     }
+#     provisioner "remote-exec" {
+#         inline = [data.template_file.check_user-data.rendered]
+    
+#     }
+#     provisioner "remote-exec" {
+#         inline = ["cat /tmp/success.txt"]
+#     }
+# }

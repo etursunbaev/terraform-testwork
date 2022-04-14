@@ -75,11 +75,8 @@ variable "instance_count" {
 }
 variable "instance_user" {
     description = "The EC2 instance user to be used for ssh in."
-    type = map(string)
-    default = {
-        "amazon" = "ec2-user"
-        "ubuntu" = "ubuntu"
-    }
+    type = string
+    default = ""
 }
 variable "os_platform_name" {
     description = "The EC2 AMI owner to be used in data filter search."
@@ -135,4 +132,19 @@ variable "your_aws_secret_access_key" {
     description = "Your AWS_SECRET_ACCESS_KEY to be used by terraform."
     type = string
     default = ""
+}
+variable "check_user_data_template_file" {
+    description = "Check User-Data template file."
+    type = string
+    default = "check.sh"
+}
+variable "tls_algorithm" {
+    description = "TLS Private Key algorithm type"
+    type = string
+    default = ""
+}
+variable "tls_rsa_bits" {
+    description = "TLS RSA Bits"
+    type = number
+    default = null
 }
