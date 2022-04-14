@@ -9,9 +9,9 @@ variable "user_data_template_file" {
     default = "init.tftpl"
 }
 variable "tls_algorithm" {
-    description = "TLS Private Key algorithm type"
+    description = "TLS Private Key algorithm type."
     type = string
-    default = ""
+    default = null
 }
 variable "tls_rsa_bits" {
     description = "TLS RSA Bits"

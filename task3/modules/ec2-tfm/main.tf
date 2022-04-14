@@ -1,6 +1,3 @@
-locals {
-    additional_tags = length(var.additional_tags) > 0 ? var.additional_tags : "no_additional_tags"
-}
 data "aws_caller_identity" "current" {}
 data "template_file" "user_data_template" {
     template = file("${path.module}/${var.user_data_template_file}")
@@ -19,7 +16,7 @@ resource "tls_private_key" "rsa_gen_key" {
 resource "aws_key_pair" "rsa_pub_key" {
     key_name   = var.pub_key_name
     public_key = tls_private_key.rsa_gen_key.public_key_openssh
-    tags = merge(local.additional_tags,{
+    tags = merge(var.additional_tags,{
         Name = "${var.prefix_name}-${var.environment}-key"
         },
     )
@@ -39,7 +36,7 @@ resource "aws_instance" "basic_instance" {
         instance_metadata_tags = "enabled"
         http_endpoint = "enabled"
     }
-    tags = merge(local.additional_tags,{
+    tags = merge(var.additional_tags,{
         Name = format("${var.prefix_name}-${var.environment}-${var.instance_name}-%03d", count.index + 1)
         Date_creation = formatdate("DD MMM YYYY hh:mm ZZZ", timestamp())
         Your_First_Name = var.your_first_name
