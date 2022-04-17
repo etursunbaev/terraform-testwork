@@ -1,12 +1,20 @@
-output "my_sg_id" {
-    description = "Your security group id."
-    value = module.md-sg.*.sg_id
+output "SG-ID" {
+    description = "Security Group ID."
+    value = module.md-sg.sg_id
 }
-output "my_instance_public_ip" {
-    description = "Your EC2 Instance Public IP address."
+output "SGRule-ID" {
+    description = "Security Group rules IDs."
+    value = module.md-sg.sgrule_id
+}
+output "Instance_Public_IP" {
+    description = "EC2 Instances Public IP address."
     value = module.md-ec2.*.instance_public_ip
 }
-output "my_instance_private_ip" {
-    description = "Your EC2 Instance Private IP address."
+output "Instance_Private_IP" {
+    description = "EC2 Instances Private IP address."
     value = module.md-ec2.*.instance_private_ip
+}
+output "Null_Resource_ID" {
+    description = "Null Resource ID only."
+    value = null_resource.remote_print.*.id
 }
