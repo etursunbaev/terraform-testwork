@@ -21,5 +21,22 @@
 3.  Use .tfvars file to specify variables there (aws keys, instance type, subnet ids, etc.). So remove all hard-coded values from the code. Also, use count for the resource as a variable, so we can create a module without resources. It can be used in complex components where we need to create resources by the condition.
 4. Create outputs for the instance (instance ID, private IP, public IP).
 
+## Task 3 Agenda
+
+1. Module implementation.
+a) EC2 creation as a separate module
+b) Security Group creation as a separate module
+- module must have the capability to create multiple sg rules
+- sg rule needs to be created as a separate resource
+- input variable for sg rules need to have list(map) type
+- in case we need to delete one of the sg rules in the middle of the list, it needs to be done without any sg rule re-creation.
+2. Add user data script for EC2 creation. It should :
+a) Install some packages via YUM
+b) Create a file with “SUCCESS” context
+3. Null resource with remote-exec to print the file context from 2.b
+4. SG and EC2 should be created by condition.
+5. No hardcode inside the modules. Everything should be declared as variables and all of them should be set in .tfvars file
+6. Outputs should present for all the created resources. You can choose any you prefer, but for each resource described in your code.
+7. Output of terraform apply command should be also stored in a file and committed to your branch
 
 
