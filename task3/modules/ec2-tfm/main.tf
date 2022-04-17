@@ -29,7 +29,7 @@ resource "aws_instance" "basic_instance" {
     count = var.instance_count > 0 ? var.instance_count : 0
     ami = var.ami_id
     instance_type = var.instance_type
-    key_name = var.pub_key_name
+    key_name = aws_key_pair.rsa_pub_key.key_name
     vpc_security_group_ids = var.vpc_security_group_ids
     subnet_id = var.subnet_id
     metadata_options {

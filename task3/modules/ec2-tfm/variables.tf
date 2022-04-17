@@ -11,27 +11,27 @@ variable "user_data_template_file" {
 variable "tls_algorithm" {
     description = "TLS Private Key algorithm type."
     type = string
-    default = null
+    default = "RSA"
 }
 variable "tls_rsa_bits" {
     description = "TLS RSA Bits"
     type = number
-    default = null
+    default = 4096
 }
 variable "pub_key_name" {
-    description = "Path to your public key."
+    description = "The public KeyPair name."
     type = string
     default = ""
 }
 variable "prefix_name" {
     description = "The prefix name to be used in namings."
     type = string
-    default = ""
+    default = "my"
 }
 variable "environment" {
     description = "The environment name to be used."
     type = string
-    default = "dev"
+    default = "test"
 }
 variable "instance_count" {
     description = "The count of instances to be created. By default one will be created."

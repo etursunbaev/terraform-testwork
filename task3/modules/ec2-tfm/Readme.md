@@ -16,11 +16,11 @@ Variables are configured in `variables.tf` file with default or empty values. Yo
 |-|-|-|-|
 | additional_tags | Common Tags to be merged with main tags. | map(string) | {} |
 | user_data_template_file | User-Data template filename | string | init.tftpl |
-| tls_algorithm | TLS Private Key algorithm type | string |-|
-| tls_rsa_bits | TLS RSA Bits | number | null |
-| pub_key_name | Path to your public key. | string |-|
-| prefix_name | The prefix name to be used in namings. | string |-|
-| environment | The environment name to be used. | string | dev |
+| tls_algorithm | TLS Private Key algorithm type | string | RSA |
+| tls_rsa_bits | TLS RSA Bits | number | 4096 |
+| pub_key_name | The public KeyPair name. | string |-|
+| prefix_name | The prefix name to be used in namings. | string | my |
+| environment | The environment name to be used. | string | test |
 | instance_count | The count of instances to be created. | number | 1 |
 | ami_id | The AMI id to be used. | string |-|
 | vpc_security_group_ids | VPC Security Group ID. | list(string) | [] |
@@ -29,3 +29,11 @@ Variables are configured in `variables.tf` file with default or empty values. Yo
 | instance_type | The default instance type to be used in. | string | t2.micro |
 | your_first_name | Your first name to be used in environment configuration. | string |-|
 | your_last_name | Your last name to be used in environment configuration. | string |-|
+
+## Outputs
+| Name | Description |
+|-|-|
+| instance_public_ip | EC2 Instance Public IP address. |
+| instance_private_ip | EC2 Instance Private IP address. |
+| priv-key-pem | The Private key data in PEM (insecured). |
+| pub-key-openssh | Public key data in Authourized files format. |
