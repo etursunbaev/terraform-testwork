@@ -21,3 +21,8 @@ Variables are configured in `variables.tf` file with default or empty values. Yo
 | egress_rules | List of egress rules to create. |  list(map(any)) | [] |
 | vpc_id | The VPC id to be used in environment. |  string |-|
 | default_vpc_id | The default VPC id if other is not set.|  string |-|
+
+## Outputs
+| Name | Description |
+|-|-|
+| sg_id | Security Groups ID's. |
