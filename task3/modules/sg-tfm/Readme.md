@@ -13,7 +13,6 @@ Variables are configured in `variables.tf` file with default or empty values. Yo
 |-|-|-|-|
 | additional_tags | Common Tags to be merged with main tags. |  map(string) | {} |
 | create_sg | Whether to create security group. | bool | true |
-| sg_count | The Security groups count to be created in. |  number | 1 |
 | prefix_name | The prefix name to be used in namings. | string |-|
 | environment | The environment name to be used. | string | dev |
 | sg_description | The default Security Group description. |  string | Common Security Group |  
@@ -21,4 +20,4 @@ Variables are configured in `variables.tf` file with default or empty values. Yo
 | ingress_rules | List of ingress rules to create. | list(map(any)) | [] |
 | egress_rules | List of egress rules to create. |  list(map(any)) | [] |
 | vpc_id | The VPC id to be used in environment. |  string |-|
-| default_vpc_id | The default VPC id.|  string |-|
+| default_vpc_id | The default VPC id if other is not set.|  string |-|

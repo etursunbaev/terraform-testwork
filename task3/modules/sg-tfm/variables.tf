@@ -1,5 +1,5 @@
 variable "additional_tags" {
-    description = "Common Tags to be merged with main tags."
+    description = "Common Tags to be merged with resource tags."
     type = map(string)
     default = {}
 }
@@ -8,20 +8,15 @@ variable "create_sg" {
     type        = bool
     default     = true
 }
-variable "sg_count" {
-    description = "The Security groups count to be created in."
-    type = number
-    default = 1
-}
 variable "prefix_name" {
     description = "The prefix name to be used in namings."
     type = string
-    default = ""
+    default = "my"
 }
 variable "environment" {
     description = "The environment name to be used."
     type = string
-    default = "dev"
+    default = "test"
 }
 variable "sg_description" {
     description = "The default Security Group description."
@@ -34,7 +29,7 @@ variable "revoke_rules_on_delete" {
   default     = false
 }
 variable "ingress_rules" {
-  description = "List of ingress rules to create where 'self' is defined"
+  description = "List of ingress rules to create."
   type        = list(map(any))
   default     = []
 }
@@ -49,7 +44,7 @@ variable "vpc_id" {
     default = ""
 }
 variable "default_vpc_id" {
-    description = "The default VPC id."
+    description = "The default VPC id if other is not set."
     type = string
     default = ""
 }
