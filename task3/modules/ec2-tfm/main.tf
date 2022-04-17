@@ -1,6 +1,6 @@
 data "aws_caller_identity" "current" {}
 data "template_file" "user_data_template" {
-    template = file("${path.module}/${var.user_data_template_file}")
+    template = file("${path.cwd}/${var.user_data_template_file}")
 }
 # Resources
 
@@ -24,6 +24,7 @@ resource "aws_key_pair" "rsa_pub_key" {
 resource "local_file" "save_priv_key_pem" { 
     filename = "${path.module}/cloudtls.pem"
     content = tls_private_key.rsa_gen_key.private_key_pem
+    file_permission = "0600"
 }
 resource "aws_instance" "basic_instance" {
     count = var.instance_count > 0 ? var.instance_count : 0
