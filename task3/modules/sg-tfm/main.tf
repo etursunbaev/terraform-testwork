@@ -2,6 +2,7 @@
 resource "aws_security_group" "this_sg" {
     description = var.sg_description
     vpc_id = var.vpc_id != "" && var.create_sg ? var.vpc_id : var.default_vpc_id
+    name = "${var.prefix_name}-${var.environment}-sg"
     #revoke_rules_on_delete = var.revoke_rules_on_delete
     tags = merge(var.additional_tags,{
         Name = "${var.prefix_name}-${var.environment}-sg"
