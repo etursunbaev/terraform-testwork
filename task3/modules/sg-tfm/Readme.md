@@ -26,3 +26,4 @@ Variables are configured in `variables.tf` file with default or empty values. Yo
 | Name | Description |
 |-|-|
 | sg_id | Security Groups ID's. |
+| sgrule_id | Security Group rules IDs. |
