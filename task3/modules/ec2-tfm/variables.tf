@@ -6,7 +6,7 @@ variable "additional_tags" {
 variable "user_data_template_file" {
     description = "User-Data template filename"
     type = string
-    default = "init.tftpl"
+    default = ""
 }
 variable "tls_algorithm" {
     description = "TLS Private Key algorithm type."

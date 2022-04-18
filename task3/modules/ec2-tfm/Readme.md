@@ -15,7 +15,7 @@ Variables are configured in `variables.tf` file with default or empty values. Yo
 | Name | Description | Type | Default value |
 |-|-|-|-|
 | additional_tags | Common Tags to be merged with main tags. | map(string) | {} |
-| user_data_template_file | User-Data template filename | string | init.tftpl |
+| user_data_template_file | User-Data template filename | string | - |
 | tls_algorithm | TLS Private Key algorithm type | string | RSA |
 | tls_rsa_bits | TLS RSA Bits | number | 4096 |
 | pub_key_name | The public KeyPair name. | string |-|

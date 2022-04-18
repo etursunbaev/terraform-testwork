@@ -1,7 +1,4 @@
 data "aws_caller_identity" "current" {}
-data "template_file" "user_data_template" {
-    template = file("${path.cwd}/${var.user_data_template_file}")
-}
 # Resources
 
 ##########################################################################################
@@ -45,5 +42,5 @@ resource "aws_instance" "basic_instance" {
         AWS_Account_ID = data.aws_caller_identity.current.account_id
         }
     )
-    user_data = data.template_file.user_data_template.rendered
+    user_data = var.user_data_template_file
 }
