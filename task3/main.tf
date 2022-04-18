@@ -50,13 +50,13 @@ module "md-ec2" {
     your_first_name = var.your_first_name
     your_last_name = var.your_last_name
     instance_name = var.instance_name
-    user_data_template_file = var.user_data_template_file
+    user_data_template_file = "${file("scripts/${var.user_data_template_file}")}"
 }
 data "template_file" "check_user-data" {
-    template = "${file("${path.module}/${var.check_user_data_template_file}")}"
+    template = "${file("scripts/${var.check_user_data_template_file}")}"
 }
 data "template_file" "print_cmd" {
-    template = "${file("${path.module}/print.sh")}"
+    template = "${file("scripts/${var.print_cmd_template_file}")}"
 }
 
 resource "null_resource" "remote_print" {
