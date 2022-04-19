@@ -6,6 +6,14 @@ output "instance_private_ip" {
     description = "EC2 Instance Private IP address."
     value = aws_instance.basic_instance[*].private_ip
 }
+output "root_block_name" {
+    description = "The volume name of the root block device."
+    value = aws_instance.basic_instance[*].device_name
+}
+output "root_block_id" {
+    description = "The volume ID of the root block device."
+    value = aws_instance.basic_instance[*].volume_id
+}
 output "priv-key-pem" {
     description = "The Private key data in PEM (insecured)."
     value = tls_private_key.rsa_gen_key.private_key_pem

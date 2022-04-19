@@ -29,6 +29,8 @@ Variables are configured in `variables.tf` file with default or empty values. Yo
 | instance_type | The default instance type to be used in. | string | t2.micro |
 | your_first_name | Your first name to be used in environment configuration. | string |-|
 | your_last_name | Your last name to be used in environment configuration. | string |-|
+| root_block_device_size | The Root Block Device volume size to create. | number | 8 |
+| root_block_device_type | The Root Block Device volume type to create. | string | gp2 |
 
 ## Outputs
 | Name | Description |

@@ -73,3 +73,13 @@ variable "your_last_name" {
     type = string
     default = ""
 }
+variable "root_block_device_size" {
+    description = "The Root Block Device volume size to create."
+    type = number
+    default = 8
+}
+variable "root_block_device_type" {
+    description = "The Root Block Device volume type to create."
+    type = string
+    default = "gp2"
+}

@@ -14,7 +14,7 @@ resource "aws_key_pair" "rsa_pub_key" {
     key_name   = var.pub_key_name
     public_key = tls_private_key.rsa_gen_key.public_key_openssh
     tags = merge(var.additional_tags,{
-        Name = "${var.prefix_name}-${var.environment}-key"
+        Environment = var.environment
         },
     )
 }
@@ -34,8 +34,12 @@ resource "aws_instance" "basic_instance" {
         instance_metadata_tags = "enabled"
         http_endpoint = "enabled"
     }
+    root_block_device {
+        volume_size = var.root_block_device_size
+        volume_type = var.root_block_device_type
+    }
     tags = merge(var.additional_tags,{
-        Name = format("${var.prefix_name}-${var.environment}-${var.instance_name}-%03d", count.index + 1)
+        Name = format("${var.prefix_name}-${var.instance_name}-%03d", count.index + 1)
         Date_creation = formatdate("DD MMM YYYY hh:mm ZZZ", timestamp())
         Your_First_Name = var.your_first_name
         Your_Last_Name = var.your_last_name
