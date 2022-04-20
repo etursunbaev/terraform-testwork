@@ -39,4 +39,5 @@ b) Create a file with “SUCCESS” context
 6. Outputs should present for all the created resources. You can choose any you prefer, but for each resource described in your code.
 7. Output of terraform apply command should be also stored in a file and committed to your branch
 
-
+## Task4 Agenda
+Modify the component module created in Task 3, so we can create multiple EC2 instances using map of parameters for EC2 instances. for each for modules should be used here.
