@@ -1,0 +1,624 @@
+root@cebd106a3393:/app/task4# terraform apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # null_resource.remote_print["Alpha"] will be created
+  + resource "null_resource" "remote_print" {
+      + id = (known after apply)
+    }
+
+  # null_resource.remote_print["Beta"] will be created
+  + resource "null_resource" "remote_print" {
+      + id = (known after apply)
+    }
+
+  # module.md-ec2["Alpha"].aws_instance.basic_instance[0] will be created
+  + resource "aws_instance" "basic_instance" {
+      + ami                                  = "ami-03ededff12e34e59e"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "my-Alpha-pubkey"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = "subnet-04540182cb1b76d61"
+      + tags                                 = (known after apply)
+      + tags_all                             = (known after apply)
+      + tenancy                              = (known after apply)
+      + user_data                            = "7e9701e989fcfa82e25203a72152289d07da1ebd"
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+
+      + capacity_reservation_specification {
+          + capacity_reservation_preference = (known after apply)
+
+          + capacity_reservation_target {
+              + capacity_reservation_id = (known after apply)
+            }
+        }
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + enclave_options {
+          + enabled = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = "enabled"
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+          + instance_metadata_tags      = "enabled"
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = true
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = 10
+          + volume_type           = "gp3"
+        }
+    }
+
+  # module.md-ec2["Alpha"].aws_key_pair.rsa_pub_key will be created
+  + resource "aws_key_pair" "rsa_pub_key" {
+      + arn             = (known after apply)
+      + fingerprint     = (known after apply)
+      + id              = (known after apply)
+      + key_name        = "my-Alpha-pubkey"
+      + key_name_prefix = (known after apply)
+      + key_pair_id     = (known after apply)
+      + public_key      = (known after apply)
+      + tags            = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "departament" = "IAD"
+        }
+      + tags_all        = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "departament" = "IAD"
+        }
+    }
+
+  # module.md-ec2["Alpha"].local_file.save_priv_key_pem will be created
+  + resource "local_file" "save_priv_key_pem" {
+      + content              = (sensitive)
+      + directory_permission = "0777"
+      + file_permission      = "0600"
+      + filename             = "modules/ec2-tfm/my-Alpha-pubkey.pem"
+      + id                   = (known after apply)
+    }
+
+  # module.md-ec2["Alpha"].tls_private_key.rsa_gen_key will be created
+  + resource "tls_private_key" "rsa_gen_key" {
+      + algorithm                     = "RSA"
+      + ecdsa_curve                   = "P224"
+      + id                            = (known after apply)
+      + private_key_openssh           = (sensitive value)
+      + private_key_pem               = (sensitive value)
+      + public_key_fingerprint_md5    = (known after apply)
+      + public_key_fingerprint_sha256 = (known after apply)
+      + public_key_openssh            = (known after apply)
+      + public_key_pem                = (known after apply)
+      + rsa_bits                      = 4096
+    }
+
+  # module.md-ec2["Beta"].aws_instance.basic_instance[0] will be created
+  + resource "aws_instance" "basic_instance" {
+      + ami                                  = "ami-03ededff12e34e59e"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "my-Beta-pubkey"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = "subnet-04540182cb1b76d61"
+      + tags                                 = (known after apply)
+      + tags_all                             = (known after apply)
+      + tenancy                              = (known after apply)
+      + user_data                            = "7e9701e989fcfa82e25203a72152289d07da1ebd"
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+
+      + capacity_reservation_specification {
+          + capacity_reservation_preference = (known after apply)
+
+          + capacity_reservation_target {
+              + capacity_reservation_id = (known after apply)
+            }
+        }
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + enclave_options {
+          + enabled = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = "enabled"
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+          + instance_metadata_tags      = "enabled"
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = true
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = 8
+          + volume_type           = "gp2"
+        }
+    }
+
+  # module.md-ec2["Beta"].aws_key_pair.rsa_pub_key will be created
+  + resource "aws_key_pair" "rsa_pub_key" {
+      + arn             = (known after apply)
+      + fingerprint     = (known after apply)
+      + id              = (known after apply)
+      + key_name        = "my-Beta-pubkey"
+      + key_name_prefix = (known after apply)
+      + key_pair_id     = (known after apply)
+      + public_key      = (known after apply)
+      + tags            = {
+          + "Environment" = "test"
+          + "ManagedBy"   = "Terraform"
+          + "departament" = "IAD"
+        }
+      + tags_all        = {
+          + "Environment" = "test"
+          + "ManagedBy"   = "Terraform"
+          + "departament" = "IAD"
+        }
+    }
+
+  # module.md-ec2["Beta"].local_file.save_priv_key_pem will be created
+  + resource "local_file" "save_priv_key_pem" {
+      + content              = (sensitive)
+      + directory_permission = "0777"
+      + file_permission      = "0600"
+      + filename             = "modules/ec2-tfm/my-Beta-pubkey.pem"
+      + id                   = (known after apply)
+    }
+
+  # module.md-ec2["Beta"].tls_private_key.rsa_gen_key will be created
+  + resource "tls_private_key" "rsa_gen_key" {
+      + algorithm                     = "RSA"
+      + ecdsa_curve                   = "P224"
+      + id                            = (known after apply)
+      + private_key_openssh           = (sensitive value)
+      + private_key_pem               = (sensitive value)
+      + public_key_fingerprint_md5    = (known after apply)
+      + public_key_fingerprint_sha256 = (known after apply)
+      + public_key_openssh            = (known after apply)
+      + public_key_pem                = (known after apply)
+      + rsa_bits                      = 4096
+    }
+
+  # module.md-sg.aws_security_group.this_sg will be created
+  + resource "aws_security_group" "this_sg" {
+      + arn                    = (known after apply)
+      + description            = "Security Group managed by Terraform team."
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = (known after apply)
+      + name                   = "my-test-sg"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "my-test-sg"
+          + "departament" = "IAD"
+        }
+      + tags_all               = {
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "my-test-sg"
+          + "departament" = "IAD"
+        }
+      + vpc_id                 = "vpc-02532678f469d05ca"
+    }
+
+  # module.md-sg.aws_security_group_rule.egress_rules["Open ALL egress"] will be created
+  + resource "aws_security_group_rule" "egress_rules" {
+      + cidr_blocks              = [
+          + "0.0.0.0/0",
+        ]
+      + description              = "Open ALL egress"
+      + from_port                = 0
+      + id                       = (known after apply)
+      + protocol                 = "-1"
+      + security_group_id        = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 65535
+      + type                     = "egress"
+    }
+
+  # module.md-sg.aws_security_group_rule.ingress_rules["http access in"] will be created
+  + resource "aws_security_group_rule" "ingress_rules" {
+      + cidr_blocks              = [
+          + "212.241.20.0/24",
+        ]
+      + description              = "http access in"
+      + from_port                = 80
+      + id                       = (known after apply)
+      + protocol                 = "tcp"
+      + security_group_id        = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 80
+      + type                     = "ingress"
+    }
+
+  # module.md-sg.aws_security_group_rule.ingress_rules["ssh access"] will be created
+  + resource "aws_security_group_rule" "ingress_rules" {
+      + cidr_blocks              = [
+          + "212.241.20.0/24",
+        ]
+      + description              = "ssh access"
+      + from_port                = 22
+      + id                       = (known after apply)
+      + protocol                 = "tcp"
+      + security_group_id        = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 22
+      + type                     = "ingress"
+    }
+
+Plan: 14 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + Instance_Private_IP = {
+      + Alpha = [
+          + (known after apply),
+        ]
+      + Beta  = [
+          + (known after apply),
+        ]
+    }
+  + Instance_Public_IP  = {
+      + Alpha = [
+          + (known after apply),
+        ]
+      + Beta  = [
+          + (known after apply),
+        ]
+    }
+  + Null_Resource_ID    = {
+      + Alpha = {
+          + id       = (known after apply)
+          + triggers = null
+        }
+      + Beta  = {
+          + id       = (known after apply)
+          + triggers = null
+        }
+    }
+  + SG-ID               = (known after apply)
+  + SGRule-ID           = {
+      + http access in = (known after apply)
+      + ssh access     = (known after apply)
+    }
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.md-ec2["Alpha"].tls_private_key.rsa_gen_key: Creating...
+module.md-ec2["Beta"].tls_private_key.rsa_gen_key: Creating...
+module.md-ec2["Beta"].tls_private_key.rsa_gen_key: Creation complete after 1s [id=aef9e9c28970b06d85bb796a6a0dc58a2b99e61b]
+module.md-ec2["Beta"].local_file.save_priv_key_pem: Creating...
+module.md-ec2["Beta"].local_file.save_priv_key_pem: Creation complete after 0s [id=61c5d53e4ad943c58577ab5c877529a055b3091c]
+module.md-ec2["Alpha"].tls_private_key.rsa_gen_key: Creation complete after 1s [id=cd722c1e8df48f55490e724e67cab2117276df77]
+module.md-ec2["Alpha"].local_file.save_priv_key_pem: Creating...
+module.md-ec2["Alpha"].local_file.save_priv_key_pem: Creation complete after 0s [id=fb98ea7c54d826de486fdef213f6b8d99b113965]
+module.md-sg.aws_security_group.this_sg: Creating...
+module.md-ec2["Beta"].aws_key_pair.rsa_pub_key: Creating...
+module.md-ec2["Alpha"].aws_key_pair.rsa_pub_key: Creating...
+module.md-ec2["Alpha"].aws_key_pair.rsa_pub_key: Creation complete after 1s [id=my-Alpha-pubkey]
+module.md-ec2["Beta"].aws_key_pair.rsa_pub_key: Creation complete after 1s [id=my-Beta-pubkey]
+module.md-sg.aws_security_group.this_sg: Creation complete after 5s [id=sg-024b6373c8f987e83]
+module.md-sg.aws_security_group_rule.egress_rules["Open ALL egress"]: Creating...
+module.md-sg.aws_security_group_rule.ingress_rules["ssh access"]: Creating...
+module.md-sg.aws_security_group_rule.ingress_rules["http access in"]: Creating...
+module.md-ec2["Beta"].aws_instance.basic_instance[0]: Creating...
+module.md-ec2["Alpha"].aws_instance.basic_instance[0]: Creating...
+module.md-sg.aws_security_group_rule.ingress_rules["ssh access"]: Creation complete after 1s [id=sgrule-2799534251]
+module.md-sg.aws_security_group_rule.ingress_rules["http access in"]: Creation complete after 3s [id=sgrule-1869536746]
+module.md-sg.aws_security_group_rule.egress_rules["Open ALL egress"]: Creation complete after 5s [id=sgrule-68213816]
+module.md-ec2["Alpha"].aws_instance.basic_instance[0]: Still creating... [10s elapsed]
+module.md-ec2["Beta"].aws_instance.basic_instance[0]: Still creating... [10s elapsed]
+module.md-ec2["Alpha"].aws_instance.basic_instance[0]: Still creating... [20s elapsed]
+module.md-ec2["Beta"].aws_instance.basic_instance[0]: Still creating... [20s elapsed]
+module.md-ec2["Beta"].aws_instance.basic_instance[0]: Still creating... [30s elapsed]
+module.md-ec2["Alpha"].aws_instance.basic_instance[0]: Still creating... [30s elapsed]
+module.md-ec2["Beta"].aws_instance.basic_instance[0]: Creation complete after 36s [id=i-04ad5da944be2fc5f]
+module.md-ec2["Alpha"].aws_instance.basic_instance[0]: Still creating... [40s elapsed]
+module.md-ec2["Alpha"].aws_instance.basic_instance[0]: Creation complete after 46s [id=i-03de5680a3b904def]
+null_resource.remote_print["Alpha"]: Creating...
+null_resource.remote_print["Beta"]: Creating...
+null_resource.remote_print["Alpha"]: Provisioning with 'remote-exec'...
+null_resource.remote_print["Beta"]: Provisioning with 'remote-exec'...
+null_resource.remote_print["Alpha"] (remote-exec): Connecting to remote host via SSH...
+null_resource.remote_print["Alpha"] (remote-exec):   Host: 34.236.156.167
+null_resource.remote_print["Alpha"] (remote-exec):   User: ec2-user
+null_resource.remote_print["Alpha"] (remote-exec):   Password: false
+null_resource.remote_print["Alpha"] (remote-exec):   Private key: true
+null_resource.remote_print["Alpha"] (remote-exec):   Certificate: false
+null_resource.remote_print["Alpha"] (remote-exec):   SSH Agent: false
+null_resource.remote_print["Alpha"] (remote-exec):   Checking Host Key: false
+null_resource.remote_print["Alpha"] (remote-exec):   Target Platform: unix
+null_resource.remote_print["Beta"] (remote-exec): Connecting to remote host via SSH...
+null_resource.remote_print["Beta"] (remote-exec):   Host: 52.72.10.137
+null_resource.remote_print["Beta"] (remote-exec):   User: ec2-user
+null_resource.remote_print["Beta"] (remote-exec):   Password: false
+null_resource.remote_print["Beta"] (remote-exec):   Private key: true
+null_resource.remote_print["Beta"] (remote-exec):   Certificate: false
+null_resource.remote_print["Beta"] (remote-exec):   SSH Agent: false
+null_resource.remote_print["Beta"] (remote-exec):   Checking Host Key: false
+null_resource.remote_print["Beta"] (remote-exec):   Target Platform: unix
+null_resource.remote_print["Beta"] (remote-exec): Connected!
+null_resource.remote_print["Alpha"] (remote-exec): Connected!
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"]: Still creating... [10s elapsed]
+null_resource.remote_print["Beta"]: Still creating... [10s elapsed]
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"]: Still creating... [20s elapsed]
+null_resource.remote_print["Beta"]: Still creating... [20s elapsed]
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"]: Still creating... [30s elapsed]
+null_resource.remote_print["Alpha"]: Still creating... [30s elapsed]
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"]: Still creating... [40s elapsed]
+null_resource.remote_print["Alpha"]: Still creating... [40s elapsed]
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"]: Provisioning with 'remote-exec'...
+null_resource.remote_print["Alpha"] (remote-exec): Connecting to remote host via SSH...
+null_resource.remote_print["Alpha"] (remote-exec):   Host: 34.236.156.167
+null_resource.remote_print["Alpha"] (remote-exec):   User: ec2-user
+null_resource.remote_print["Alpha"] (remote-exec):   Password: false
+null_resource.remote_print["Alpha"] (remote-exec):   Private key: true
+null_resource.remote_print["Alpha"] (remote-exec):   Certificate: false
+null_resource.remote_print["Alpha"] (remote-exec):   SSH Agent: false
+null_resource.remote_print["Alpha"] (remote-exec):   Checking Host Key: false
+null_resource.remote_print["Alpha"] (remote-exec):   Target Platform: unix
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): Connected!
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Alpha"] (remote-exec): SUCCESS!
+null_resource.remote_print["Alpha"]: Creation complete after 49s [id=6661507776369034524]
+null_resource.remote_print["Beta"] (remote-exec): Waiting for user-data...
+null_resource.remote_print["Beta"]: Still creating... [50s elapsed]
+null_resource.remote_print["Beta"]: Provisioning with 'remote-exec'...
+null_resource.remote_print["Beta"] (remote-exec): Connecting to remote host via SSH...
+null_resource.remote_print["Beta"] (remote-exec):   Host: 52.72.10.137
+null_resource.remote_print["Beta"] (remote-exec):   User: ec2-user
+null_resource.remote_print["Beta"] (remote-exec):   Password: false
+null_resource.remote_print["Beta"] (remote-exec):   Private key: true
+null_resource.remote_print["Beta"] (remote-exec):   Certificate: false
+null_resource.remote_print["Beta"] (remote-exec):   SSH Agent: false
+null_resource.remote_print["Beta"] (remote-exec):   Checking Host Key: false
+null_resource.remote_print["Beta"] (remote-exec):   Target Platform: unix
+null_resource.remote_print["Beta"] (remote-exec): Connected!
+null_resource.remote_print["Beta"] (remote-exec): SUCCESS!
+null_resource.remote_print["Beta"]: Creation complete after 56s [id=4593255511343713206]
+
+Apply complete! Resources: 14 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+Instance_Private_IP = {
+  "Alpha" = [
+    "172.31.20.117",
+  ]
+  "Beta" = [
+    "172.31.17.122",
+  ]
+}
+Instance_Public_IP = {
+  "Alpha" = [
+    "34.236.156.167",
+  ]
+  "Beta" = [
+    "52.72.10.137",
+  ]
+}
+Null_Resource_ID = {
+  "Alpha" = {
+    "id" = "6661507776369034524"
+    "triggers" = tomap(null) /* of string */
+  }
+  "Beta" = {
+    "id" = "4593255511343713206"
+    "triggers" = tomap(null) /* of string */
+  }
+}
+SG-ID = "sg-024b6373c8f987e83"
+SGRule-ID = {
+  "http access in" = "sgrule-1869536746"
+  "ssh access" = "sgrule-2799534251"
+}

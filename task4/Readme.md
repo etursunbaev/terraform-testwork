@@ -2,7 +2,7 @@
 
 ## Description
 
-This Terraform module creates following resources via modules:
+This Terraform module creates following resources via modules using `for_each` meta-argument:
 - md-sg
 - md-ec2 
 And provisions `null_resouce` to check and print file content.
