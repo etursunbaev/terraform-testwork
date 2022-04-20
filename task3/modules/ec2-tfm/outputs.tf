@@ -8,11 +8,11 @@ output "instance_private_ip" {
 }
 output "root_block_name" {
     description = "The volume name of the root block device."
-    value = aws_instance.basic_instance[*].device_name
+    value = aws_instance.basic_instance[*].root_block_device.*.device_name
 }
 output "root_block_id" {
     description = "The volume ID of the root block device."
-    value = aws_instance.basic_instance[*].volume_id
+    value = aws_instance.basic_instance[*].root_block_device.*.volume_id
 }
 output "priv-key-pem" {
     description = "The Private key data in PEM (insecured)."
