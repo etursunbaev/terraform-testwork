@@ -39,3 +39,5 @@ Variables are configured in `variables.tf` file with default or empty values. Yo
 | instance_private_ip | EC2 Instance Private IP address. |
 | priv-key-pem | The Private key data in PEM (insecured). |
 | pub-key-openssh | Public key data in Authourized files format. |
+| root_block_name | The volume name of the root block device. |
+| root_block_id | The volume ID of the root block device. |

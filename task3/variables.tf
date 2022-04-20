@@ -121,3 +121,18 @@ variable "tls_rsa_bits" {
     type = number
     default = 4096
 }
+variable "aws_region" {
+    description = "The AWS region to use in."
+    type = string
+    default = "us-east-1"
+}
+variable "root_block_device_size" {
+    description = "The Root Block Device volume size to create."
+    type = number
+    default = 8
+}
+variable "root_block_device_type" {
+    description = "The Root Block Device volume type to create."
+    type = string
+    default = "gp2"
+}

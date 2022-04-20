@@ -36,6 +36,9 @@ Variables are configured in `variables.tf` file with default or empty values. Yo
 | user_data_template_file | string | User-Data template file. |-|
 | tls_algorithm | string | TLS Private Key algorithm type. | RSA |
 | tls_rsa_bits | number | TLS RSA Bits | 4096 |
+| aws_region | string | The AWS region to use in. | us-east-1 |
+| root_block_device_size | number | The Root Block Device volume size to create. | 8 |
+| root_block_device_type | string | The Root Block Device volume type to create. | gp2 |
 
 ## Outputs
 | Name | Description |

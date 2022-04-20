@@ -1,3 +1,4 @@
+aws_region = "us-east-1"
 create_sg = true
 pub_key_name = "MyPublic"
 vpc_az = "us-east-1b"
@@ -34,3 +35,5 @@ additional_tags = {
   "departament" = "IAD"
   "ManagedBy" = "Terraform"
 }
+root_block_device_size = 10
+root_block_device_type = "gp3"

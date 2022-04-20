@@ -1,3 +1,6 @@
+provider "aws" {
+  region = var.aws_region
+}
 locals {
     username = lookup(var.instance_user, var.os_platform_owner)
 }
@@ -50,6 +53,8 @@ module "md-ec2" {
     your_first_name = var.your_first_name
     your_last_name = var.your_last_name
     instance_name = var.instance_name
+    root_block_device_size = var.root_block_device_size
+    root_block_device_type = var.root_block_device_type
     user_data_template_file = "${file("scripts/${var.user_data_template_file}")}"
 }
 data "template_file" "check_user-data" {
