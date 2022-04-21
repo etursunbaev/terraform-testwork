@@ -36,7 +36,7 @@ variable "pub_key_name" {
 variable "root_vol_size" {
   description = "The root block device size in Gb."
   type        = number
-  default     = 8
+  default     = 30
 }
 variable "root_vol_type" {
   description = "The root block device type."
@@ -57,4 +57,14 @@ variable "vpc_id" {
   description = "A VPC ID."
   type        = string
   default     = ""
+}
+variable "ami_owner" {
+  description = "List of AMI owners to limit search. At least 1 value must be specified."
+  type = string
+  default = "amazon"
+}
+variable "image_id" {
+  description = "The ECS optimized EC2 image ID to launch."
+  type = string
+  default = ""
 }

@@ -7,6 +7,15 @@ data "aws_subnets" "subnets" {
     values = [var.vpc_id]
   }
 }
+data "aws_ami" "ecs_ami" {
+  most_recent      = true
+  owners           = [var.ami_owner]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-ecs-hvm-2.0*"]
+  }
+}
 module "md-asg_launch_conf" {
   source            = "./modules/launch-config-tfm"
   os_platform_name  = var.os_platform_name
@@ -17,6 +26,7 @@ module "md-asg_launch_conf" {
   pub_key_name      = var.pub_key_name
   root_vol_size     = var.root_vol_size
   root_vol_type     = var.root_vol_type
+  image_id = data.aws_ami.ecs_ami.image_id != "" ? data.aws_ami.ecs_ami.image_id : var.image_id
 }
 module "md-asg" {
   source             = "./modules/asg-tfm"
