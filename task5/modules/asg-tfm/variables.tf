@@ -23,3 +23,8 @@ variable "launch_config_name" {
   type        = string
   default     = ""
 }
+variable "subnets" {
+  description = "A list of subnet IDs to launch resources in."
+  type        = list(any)
+  default     = []
+}
