@@ -38,3 +38,8 @@ variable "root_vol_type" {
   type        = string
   default     = "gp3"
 }
+variable "image_id" {
+  description = "value"
+  type = string
+  default = ""
+}

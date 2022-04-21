@@ -14,6 +14,7 @@ This module creates the Launch Configuration to use for autoscaling group.
 | pub_key_name | The public KeyPair name. | string |-|
 | root_vol_size | The root block device size in Gb. | number | 8 |
 | root_vol_type | The root block device type. | string | gp3 |
+| image_id | The EC2 image ID to launch. | string |-|
 
 ## Outputs
 
