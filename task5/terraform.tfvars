@@ -1,5 +1,0 @@
-aws_region   = "us-east-1"
-prefix_name  = "my"
-environment  = "test"
-pub_key_name = "MyKeyPair"
-vpc_id       = "vpc-02532678f469d05ca"
