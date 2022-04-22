@@ -28,3 +28,28 @@ variable "subnets" {
   type        = list(any)
   default     = []
 }
+variable "instance_type" {
+  description = "The EC2 instance type to use."
+  type        = string
+  default     = "t2.micro"
+}
+variable "pub_key_name" {
+  description = "The public KeyPair name."
+  type        = string
+  default     = ""
+}
+variable "root_vol_size" {
+  description = "The root block device size in Gb."
+  type        = number
+  default     = 8
+}
+variable "root_vol_type" {
+  description = "The root block device type."
+  type        = string
+  default     = "gp3"
+}
+variable "image_id" {
+  description = "The AMI ID."
+  type = string
+  default = ""
+}
