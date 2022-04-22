@@ -68,3 +68,18 @@ variable "image_id" {
   type = string
   default = ""
 }
+variable "cluster_name" {
+  description = "Name of the cluster (up to 255 letters, numbers, hyphens, and underscores)"
+  type = string
+  default = ""
+}
+variable "default_user_data_template_file" {
+  description = ""
+  type = string
+  default = "default_user-data.sh"  
+}
+variable "user_data" {
+  description = "value"
+  type = string
+  default = ""   
+}
