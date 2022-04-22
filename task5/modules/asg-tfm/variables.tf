@@ -50,11 +50,16 @@ variable "root_vol_type" {
 }
 variable "image_id" {
   description = "The AMI ID."
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 variable "user_data_template_file" {
   description = "User-Data template filename"
+  type        = string
+  default     = ""
+}
+variable "instance_profile" {
+  description = "IAM Instance profile name"
   type        = string
   default     = ""
 }
