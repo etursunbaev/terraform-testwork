@@ -1,2 +1,2 @@
 #cluster_name = "alatoo"
-prefix_name = "test"
+prefix_name = "my"
