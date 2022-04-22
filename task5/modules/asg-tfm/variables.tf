@@ -46,10 +46,15 @@ variable "root_vol_size" {
 variable "root_vol_type" {
   description = "The root block device type."
   type        = string
-  default     = "gp3"
+  default     = "gp2"
 }
 variable "image_id" {
   description = "The AMI ID."
   type = string
   default = ""
+}
+variable "user_data_template_file" {
+  description = "User-Data template filename"
+  type        = string
+  default     = ""
 }
