@@ -13,6 +13,11 @@ variable "cluster_name" {
   type        = string
   default     = ""
 }
+variable "create_ecs" {
+  description = "Create ECS or not?"
+  type        = bool
+  default     = true
+}
 variable "ecsInstanceRoleAssumeRolePolicy" {
   type = string
 
