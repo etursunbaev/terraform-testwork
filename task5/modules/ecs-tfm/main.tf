@@ -10,3 +10,7 @@ resource "aws_iam_role_policy" "ecsInstanceRolePolicy" {
   role   = aws_iam_role.ecsInstanceRole.id
   policy = var.ecsInstancerolePolicy
 }
+resource "aws_iam_instance_profile" "profile" {
+  name = var.prefix_name != "" && var.environment != "" ? "${var.prefix_name}-${var.environment}-iam-instance-profile" : "default-iam-instance-profile"
+  role = aws_iam_role.ecsInstanceRole.name
+}

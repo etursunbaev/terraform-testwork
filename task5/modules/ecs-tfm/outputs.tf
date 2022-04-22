@@ -10,3 +10,7 @@ output "ecsInstanceRolePolicy_id" {
   description = "The ecsInstanceRolePolicy arn."
   value = aws_iam_role_policy.ecsInstanceRolePolicy.id
 }
+output "iam_instance_profile_name" {
+  description = "IAM instance profile"
+  value = aws_iam_instance_profile.profile.name  
+}
