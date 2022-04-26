@@ -1,0 +1,11 @@
+[
+  {
+    "name": "centos-container",
+    "image": "centos",
+    "cpu": 256,
+    "memory": 512,
+    "command": ["-f","/dev/null"],
+    "entrypoint": ["tail"],
+    "essential": true
+  }
+]

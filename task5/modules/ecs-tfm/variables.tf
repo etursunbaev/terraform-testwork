@@ -19,9 +19,9 @@ variable "create_ecs" {
   default     = true
 }
 variable "ecsInstanceRoleAssumeRolePolicy" {
-  type = string
-
-  default = <<EOF
+  description = "The ECS Instance AssumeRole policy."
+  type        = string
+  default     = <<EOF
 {
   "Version": "2008-10-17",
   "Statement": [
@@ -38,9 +38,9 @@ variable "ecsInstanceRoleAssumeRolePolicy" {
 EOF
 }
 variable "ecsInstancerolePolicy" {
-  type = string
-
-  default = <<EOF
+  description = "The ECS Instance Role Policy."
+  type        = string
+  default     = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -66,4 +66,29 @@ variable "ecsInstancerolePolicy" {
   ]
 }
 EOF
+}
+variable "service_name" {
+  description = "The ECS service name."
+  type        = string
+  default     = ""
+}
+variable "unique_name" {
+  description = "The ECS task definition unique name."
+  type        = string
+  default     = ""
+}
+variable "launch_type" {
+  description = "The ECS service launch type."
+  type        = string
+  default     = "EC2"
+}
+variable "min_count" {
+  description = "Number of instances of the task definition to place and keep running."
+  type        = number
+  default     = 1
+}
+variable "additional_tags" {
+  description = "Common Tags to be merged with main tags."
+  type        = map(string)
+  default     = {}
 }
