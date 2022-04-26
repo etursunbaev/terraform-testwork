@@ -35,6 +35,8 @@ Deploy centos container (https://hub.docker.com/_/centos) to ECS using your modu
 
 ## Outputs
 
+| Name | Description |
+|-|-|
 | ecs_ami_id | The ECS optimized EC2 image ID. |
 | ecs_cluster_name | The ECS cluster name. |
 | ecs_service_arn | The ECS Service ARN. |
