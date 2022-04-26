@@ -60,7 +60,8 @@ This module AWS ECS cluster with ECS service and task definition.
 | Name | Description |
 |-|-|
 | cluster_name | The output of cluster name. |
-| ecsInstanceRole_arn | The ecsInstanceRole arn. |
-| ecsInstanceRolePolicy_id | The ecsInstanceRolePolicy arn. |
-| iam_instance_profile_name | IAM instance profile. |
-| service_id | The ECS Service ID. |
+| ecsInstanceRole_arn | The ecsInstanceRole ARN. |
+| ecsInstanceRolePolicy_id | The ecsInstanceRolePolicy ARN. |
+| iam_instance_profile_name | IAM instance profile name. |
+| service_arn | The ECS Service ARN. |
+| task_def_arn | The Task Definition ARN. |
