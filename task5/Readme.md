@@ -1,10 +1,10 @@
 # ASG and ECS Terraform module
 
-This module creates following infrastructure:
-- EC2 Auto-Scaling Group
-- EC2 Launch Configuration
-- ECS Cluster
-- ECS Service and task definition with CentOS docker image
+## Agenda
+Need to create a module for ASG (includes asg and launch configuration)
+Need to create a module for ECS specific resources (ECS service, ECS cluster, ECS task definition)
+Add user data into ASG module to include EC2 instances into ECS cluster.
+Deploy centos container (https://hub.docker.com/_/centos) to ECS using your modules.
 
 ## Variables
 
