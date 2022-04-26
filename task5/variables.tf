@@ -60,26 +60,51 @@ variable "vpc_id" {
 }
 variable "ami_owner" {
   description = "List of AMI owners to limit search. At least 1 value must be specified."
-  type = string
-  default = "amazon"
+  type        = string
+  default     = "amazon"
 }
 variable "image_id" {
   description = "The ECS optimized EC2 image ID to launch."
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 variable "cluster_name" {
   description = "Name of the cluster (up to 255 letters, numbers, hyphens, and underscores)"
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 variable "default_user_data_template_file" {
-  description = ""
-  type = string
-  default = "default_user-data.sh"  
+  description = "Default user-data file."
+  type        = string
+  default     = "default_user-data.sh"
 }
 variable "user_data" {
-  description = "value"
-  type = string
-  default = ""   
+  description = "Main user-data."
+  type        = string
+  default     = ""
+}
+variable "service_name" {
+  description = "The ECS service name."
+  type        = string
+  default     = ""
+}
+variable "unique_name" {
+  description = "The ECS task definition unique name."
+  type        = string
+  default     = ""
+}
+variable "additional_tags" {
+  description = "Common Tags to be merged with main tags."
+  type        = map(string)
+  default     = {}
+}
+variable "launch_config_name" {
+  description = "The Launch Configuration name."
+  type        = string
+  default     = "lcfg"
+}
+variable "asg_name" {
+  description = "The Auto-Scaling Group name."
+  type        = string
+  default     = "asg"
 }
