@@ -1,3 +1,13 @@
+variable "launch_config_name" {
+  description = "The Launch Configuration name to use in ASG."
+  type        = string
+  default     = ""
+}
+variable "asg_name" {
+  description = "The name of the Auto Scaling Group."
+  type        = string
+  default     = ""
+}
 variable "prefix_name" {
   description = "The prefix name to use in configuration."
   type        = string
@@ -17,11 +27,6 @@ variable "asg_min_size" {
   description = "The minimum size of the Auto Scaling Group."
   type        = number
   default     = 1
-}
-variable "launch_config_name" {
-  description = "The Launch Configuration name to use in ASG."
-  type        = string
-  default     = ""
 }
 variable "subnets" {
   description = "A list of subnet IDs to launch resources in."
@@ -62,4 +67,9 @@ variable "instance_profile" {
   description = "IAM Instance profile name"
   type        = string
   default     = ""
+}
+variable "additional_tags" {
+  description = "Common Tags to be merged with main tags."
+  type        = map(string)
+  default     = {}
 }

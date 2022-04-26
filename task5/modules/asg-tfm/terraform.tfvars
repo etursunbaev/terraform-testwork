@@ -1,3 +1,4 @@
+asg_name           = "dron"
 prefix_name        = "moi"
 environment        = "test"
 asg_max_size       = 2
