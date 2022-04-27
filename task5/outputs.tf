@@ -8,7 +8,7 @@ output "ecs_cluster_name" {
 }
 output "ecs_service_arn" {
   description = "The ECS Service ARN."
-  value       = module.md-ecs.service_name
+  value       = module.md-ecs.service_arn
 }
 output "task_def_arn" {
   description = "The Task Definition ARN."
@@ -24,5 +24,5 @@ output "asg_id" {
 }
 output "launch_config_name" {
   description = "The Launch Configuration name."
-  value       = module.md-asg.asg_name
+  value       = module.md-asg.launch_configuration_name
 }
