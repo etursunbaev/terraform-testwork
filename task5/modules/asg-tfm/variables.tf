@@ -1,22 +1,10 @@
-variable "launch_config_name" {
-  description = "The Launch Configuration name to use in ASG."
+variable "environment" {
+  description = "The environment name to use in configuration."
   type        = string
-  default     = ""
-}
-variable "asg_name" {
-  description = "The name of the Auto Scaling Group."
-  type        = string
-  default     = ""
 }
 variable "prefix_name" {
   description = "The prefix name to use in configuration."
   type        = string
-  default     = ""
-}
-variable "environment" {
-  description = "The environment name to use in configuration."
-  type        = string
-  default     = "test"
 }
 variable "asg_max_size" {
   description = "The maximum size of the Auto Scaling Group."
@@ -55,7 +43,11 @@ variable "root_vol_type" {
 variable "image_id" {
   description = "The AMI ID."
   type        = string
-  default     = ""
+}
+variable "default_image_id" {
+  description = "Default AMI ID if image_id is unknown."
+  type        = string
+  default     = "ami-0f260fe26c2826a3d"
 }
 variable "user_data_template_file" {
   description = "User-Data template filename"
@@ -65,10 +57,8 @@ variable "user_data_template_file" {
 variable "instance_profile" {
   description = "IAM Instance profile name"
   type        = string
-  default     = ""
 }
 variable "additional_tags" {
   description = "Common Tags to be merged with main tags."
   type        = map(string)
-  default     = {}
 }
