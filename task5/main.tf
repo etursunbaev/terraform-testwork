@@ -7,6 +7,7 @@ locals {
   unique_name        = "${var.prefix_name}-${var.environment}-${var.unique_name}"
   launch_config_name = "${var.prefix_name}-${var.environment}-${var.launch_config_name}"
   asg_name           = "${var.prefix_name}-${var.environment}-${var.asg_name}"
+  pub_key_name       = "${var.prefix_name}-${var.environment}-key"
 }
 data "aws_subnets" "subnets" {
   filter {
@@ -30,7 +31,21 @@ data "template_file" "user_data" {
     ecs_cluster_name = local.cluster_name
   }
 }
-
+data "aws_instances" "this_instance" {
+  instance_tags = {
+    Environment = var.environment
+    #Name = "*asg*"
+  }
+}
+resource "aws_key_pair" "pub_key" {
+  key_name   = local.pub_key_name
+  public_key = var.public_key
+  tags = merge(var.additional_tags, {
+    Name        = local.pub_key_name
+    Environment = var.environment
+    },
+  )
+}
 module "md-asg" {
   source                  = "./modules/asg-tfm"
   prefix_name             = var.prefix_name
@@ -42,7 +57,7 @@ module "md-asg" {
   subnets                 = data.aws_subnets.subnets.ids
   instance_profile        = module.md-ecs.iam_instance_profile_name
   instance_type           = var.instance_type
-  pub_key_name            = var.pub_key_name
+  pub_key_name            = aws_key_pair.pub_key.key_name
   root_vol_size           = var.root_vol_size
   root_vol_type           = var.root_vol_type
   image_id                = data.aws_ami.ecs_ami.image_id != "" ? data.aws_ami.ecs_ami.image_id : var.image_id

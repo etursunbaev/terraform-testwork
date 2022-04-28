@@ -26,3 +26,7 @@ output "launch_config_name" {
   description = "The Launch Configuration name."
   value       = module.md-asg.launch_configuration_name
 }
+output "public_ip" {
+  description = "EC2 Instances public IP"
+  value       = data.aws_instances.this_instance.public_ips
+}

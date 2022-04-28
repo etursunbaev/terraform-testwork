@@ -16,7 +16,6 @@ variable "os_platform_name" {
 variable "prefix_name" {
   description = "The prefix name to use in configuration."
   type        = string
-  default     = ""
 }
 variable "environment" {
   description = "The environment name to use in configuration."
@@ -28,10 +27,9 @@ variable "instance_type" {
   type        = string
   default     = "t2.micro"
 }
-variable "pub_key_name" {
+variable "public_key" {
   description = "The public KeyPair name."
   type        = string
-  default     = ""
 }
 variable "root_vol_size" {
   description = "The root block device size in Gb."

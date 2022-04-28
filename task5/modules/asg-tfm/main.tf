@@ -22,6 +22,6 @@ resource "aws_autoscaling_group" "this_asg" {
   tag {
     key                 = "Environment"
     value               = var.environment
-    propagate_at_launch = false
+    propagate_at_launch = true
   }
 }

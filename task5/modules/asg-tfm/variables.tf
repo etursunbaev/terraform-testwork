@@ -41,7 +41,6 @@ variable "instance_type" {
 variable "pub_key_name" {
   description = "The public KeyPair name."
   type        = string
-  default     = ""
 }
 variable "root_vol_size" {
   description = "The root block device size in Gb."
