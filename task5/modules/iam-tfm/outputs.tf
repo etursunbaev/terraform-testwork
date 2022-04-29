@@ -6,9 +6,9 @@ output "ecsInstanceRole_arn" {
   description = "ECS instance role arn"
   value       = aws_iam_role.this_ecsInstanceRole.arn
 }
-output "instance_profile_arn" {
+output "instance_profile_name" {
   description = "IAM instance profile arn"
-  value       = aws_iam_instance_profile.this_profile.arn
+  value       = aws_iam_instance_profile.this_profile.name
 }
 output "ecsInstanceRolePolicy_id" {
   description = "ECS instance role policy id"
