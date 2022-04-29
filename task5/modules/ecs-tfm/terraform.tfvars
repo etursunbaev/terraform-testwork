@@ -1,6 +1,6 @@
-#cluster_name = "alatoo"
 prefix_name = "my"
-create_ecs  = false
+#create_ecs  = false
+environment = "dev"
 additional_tags = {
   "Departament" = "IT"
   "Platform"    = "Container"
