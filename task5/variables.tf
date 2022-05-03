@@ -20,7 +20,6 @@ variable "prefix_name" {
 variable "environment" {
   description = "The environment name to use in configuration."
   type        = string
-  default     = "test"
 }
 variable "instance_type" {
   description = "The EC2 instance type to use."
@@ -54,7 +53,6 @@ variable "asg_min_size" {
 variable "vpc_id" {
   description = "A VPC ID."
   type        = string
-  default     = ""
 }
 variable "ami_owner" {
   description = "List of AMI owners to limit search. At least 1 value must be specified."
@@ -63,11 +61,6 @@ variable "ami_owner" {
 }
 variable "image_id" {
   description = "The ECS optimized EC2 image ID to launch."
-  type        = string
-  default     = ""
-}
-variable "cluster_name" {
-  description = "Name of the cluster (up to 255 letters, numbers, hyphens, and underscores)"
   type        = string
   default     = ""
 }
@@ -81,28 +74,27 @@ variable "user_data" {
   type        = string
   default     = ""
 }
-variable "service_name" {
-  description = "The ECS service name."
-  type        = string
-  default     = ""
-}
-variable "unique_name" {
-  description = "The ECS task definition unique name."
-  type        = string
-  default     = ""
-}
 variable "additional_tags" {
   description = "Common Tags to be merged with main tags."
   type        = map(string)
   default     = {}
 }
-variable "launch_config_name" {
-  description = "The Launch Configuration name."
-  type        = string
-  default     = "lcfg"
+variable "create_sg" {
+  description = "Whether to create security group."
+  type        = bool
 }
-variable "asg_name" {
-  description = "The Auto-Scaling Group name."
+variable "ingress_rules" {
+  description = "List of ingress rules to create."
+  type        = list(map(any))
+  default     = []
+}
+variable "egress_rules" {
+  description = "List of egress rules to be created"
+  type        = list(map(any))
+  default     = []
+}
+variable "default_vpc_id" {
+  description = "The default VPC id if other is not set."
   type        = string
-  default     = "asg"
+  default     = ""
 }

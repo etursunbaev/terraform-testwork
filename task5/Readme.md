@@ -24,11 +24,8 @@ Deploy centos container (https://hub.docker.com/_/centos) to ECS using your modu
 | vpc_id | A VPC ID | string |-|
 | ami_owner | List of AMI owners to limit search. At least 1 value must be specified | string | amazon |
 | image_id | The ECS optimized EC2 image ID to launch | string |-|
-| cluster_name | Name of the cluster (up to 255 letters, numbers, hyphens, and underscores)| string ||
 | default_user_data_template_file | Default user-data file | string | default_user-data.sh |
 | user_data | Main user-data | string |-|
-| service_name | The ECS service name | string |-|
-| unique_name | The ECS task definition unique name | string |-|
 | additional_tags | Common Tags to be merged with main tags | map(string) | {} |
 | launch_config_name | The Launch Configuration name | string | lcfg |
 | asg_name | The Auto-Scaling Group name | string | asg |
