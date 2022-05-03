@@ -35,6 +35,7 @@ resource "aws_launch_configuration" "this_launch_conf" {
   iam_instance_profile = var.instance_profile
   key_name             = var.pub_key_name
   user_data            = var.user_data_template_file
+  security_groups      = var.security_groups
   root_block_device {
     volume_size = var.root_vol_size
     volume_type = var.root_vol_type

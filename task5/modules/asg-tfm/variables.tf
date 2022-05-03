@@ -62,3 +62,7 @@ variable "additional_tags" {
   description = "Common Tags to be merged with main tags."
   type        = map(string)
 }
+variable "security_groups" {
+  description = "SG"
+  type        = list(any)
+}
